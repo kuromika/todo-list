@@ -12,8 +12,6 @@ const project = (title, toDos) =>{
 
         getTitle : () => title,
         getToDos : () => toDos,
-
-
     }
 
     return Object.assign(Object.create(proto), {title, toDos});
