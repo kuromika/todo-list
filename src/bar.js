@@ -1,9 +1,9 @@
 import { createElementWithClass } from "./dom";
-import { addProject, getProjects, removeProject} from "./app";
+import { addProject, getProjects} from "./app";
 
 let selected;
 
-const projectsBar = createElementWithClass('div', 'projects-bar');
+const bar = createElementWithClass('div', 'projects-bar');
 const header = createElementWithClass('h2', 'bar-header');
 header.textContent = 'My Projects';
 const projectsList = createElementWithClass('ul', 'projects-list');
@@ -33,10 +33,6 @@ function createProjectElement(title, index){
     return newProject;
 }
 
-function unlistProject(index){
-    projectsList.getElementsByClassName('project-button')[index].remove();
-    removeProject(index);
-}
 
 function listProject(project){
     projectsList.append(project);
@@ -54,6 +50,7 @@ newProjectButton.addEventListener('click', () => {
     }
     const newProject = createProjectElement(newProjectTextField.value, getProjects().length-1);
     listProject(newProject);
+    newProjectTextField.value = '';
     addProject(newProjectTextField.value);
 
 })
@@ -62,14 +59,14 @@ function selectProject(select){
     selected = select;
 }
 
-projectsBar.append(header);
-projectsBar.append(projectsList);
-projectsBar.append(newProjectDiv);
+bar.append(header);
+bar.append(projectsList);
+bar.append(newProjectDiv);
+
+export default bar;
 
 export {
-    projectsBar,
     createProjectElement,
-    unlistProject,
     selectProject,
     listProject
 }

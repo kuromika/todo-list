@@ -3,6 +3,7 @@
     --gray: #f3f4f6;
     --zinc: #e4e4e7;
     --dark-slate: #94a3b8;
+    --stone: #52525b;
 }
 
 @font-face {
@@ -17,6 +18,8 @@
     font-family: 'Noto Sans', sans-serif;
     margin: 0;
     padding: 0;
+    color:var(--stone);
+
 }
 
 body{
@@ -87,9 +90,27 @@ main{
     background-color: var(--zinc);
 }
 
+.new-project-textfield{
+    border: 2px solid var(--zinc) ;
+    padding: 5px;
+}
 
+.new-project-textfield:focus{
+    border-color: var(--dark-slate);
+    border-right: none;
+    outline: none;
+}
 
 
 .new-project-button:active{
     background-color: var(--dark-slate);
+}
+
+.project-view{
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+    background-color: var(--gray);
+    margin-left: 3px;
+    width: calc(80% - 3px);
 }
