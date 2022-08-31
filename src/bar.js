@@ -1,6 +1,8 @@
 import { createElementWithClass } from "./dom";
 import { addProject, getProjects, removeProject} from "./app";
 
+let selected;
+
 const projectsBar = createElementWithClass('div', 'projects-bar');
 const header = createElementWithClass('h2', 'bar-header');
 header.textContent = 'My Projects';
@@ -16,16 +18,28 @@ newProjectButton.setAttribute('type', 'button');
 newProjectDiv.append(newProjectTextField);
 newProjectDiv.append(newProjectButton);
 
-function listProject(title, index){
+function createProjectElement(title, index){
     const newProject = createElementWithClass('button', 'project-button');
     newProject.textContent = title;
     newProject.setAttribute('index',index); 
-    projectsList.append(newProject);
+    newProject.addEventListener('click', (e) =>{
+        newProject.classList.add('selected');
+        if (selected != e.target && selected != undefined){
+            selected.classList.remove('selected');
+        }
+        selected = newProject;
+    })
+    newProject.click();
+    return newProject;
 }
 
 function unlistProject(index){
     projectsList.getElementsByClassName('project-button')[index].remove();
     removeProject(index);
+}
+
+function listProject(project){
+    projectsList.append(project);
 }
 
 newProjectTextField.addEventListener('keypress', (e)=>{
@@ -38,10 +52,15 @@ newProjectButton.addEventListener('click', () => {
     if (newProjectTextField.value == ''){
         return;
     }
-    listProject(newProjectTextField.value, getProjects().length-1);
+    const newProject = createProjectElement(newProjectTextField.value, getProjects().length-1);
+    listProject(newProject);
     addProject(newProjectTextField.value);
 
 })
+
+function selectProject(select){
+    selected = select;
+}
 
 projectsBar.append(header);
 projectsBar.append(projectsList);
@@ -49,6 +68,8 @@ projectsBar.append(newProjectDiv);
 
 export {
     projectsBar,
-    listProject,
-    unlistProject
+    createProjectElement,
+    unlistProject,
+    selectProject,
+    listProject
 }

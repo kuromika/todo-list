@@ -1,11 +1,16 @@
 
 import { body } from ".";
-import { projectsBar, listProject, unlistProject } from "./bar";
+
+import { 
+    projectsBar,
+    listProject, 
+    selectProject, 
+    createProjectElement} from "./bar";
+
 import { getProjects } from "./app";
 import './style.css';
 
 const main = document.createElement('main');
-const selectedProject = 0;
 
 function createElementWithClass(tag, elementClass){
     const newElement = document.createElement(tag);
@@ -14,7 +19,9 @@ function createElementWithClass(tag, elementClass){
 }
 
 function build(){
-    listProject(getProjects()[0].getTitle(), 0);
+    const defaultProject = createProjectElement(getProjects()[0].getTitle(), 0);
+    selectProject(defaultProject);
+    listProject(defaultProject);
     main.append(projectsBar);
     body.append(main);
 }
