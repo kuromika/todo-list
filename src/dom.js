@@ -7,7 +7,7 @@ import { listProject, selectProject, createProjectElement} from "./bar";
 import projectView from "./projectView";
 import { setTitle as  setViewTitle } from "./projectView";
 
-import { getProjects } from "./app";
+import { getProjects, addProject} from "./app";
 
 
 import './style.css';
@@ -21,15 +21,18 @@ function createElementWithClass(tag, elementClass){
 }
 
 function build(){
-    const defaultProjectElement = createProjectElement(getProjects()[0].getTitle(), 0);
+    addProjectDom('Default');
     setViewTitle(getProjects()[0]);
-    selectProject(defaultProjectElement);
-    listProject(defaultProjectElement);
     main.append(bar);
     main.append(projectView);
     body.append(main);
 }
 
+function addProjectDom(title){
+    createProjectElement(title, getProjects().length-1);
+    addProject(title);
+}
 
 
-export {createElementWithClass, build}
+
+export {createElementWithClass, build, addProjectDom}

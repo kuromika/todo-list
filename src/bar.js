@@ -1,7 +1,5 @@
-import { createElementWithClass } from "./dom";
-import { addProject, getProjects} from "./app";
+import { createElementWithClass, addProjectDom} from "./dom";
 
-let selected;
 
 const bar = createElementWithClass('div', 'projects-bar');
 const header = createElementWithClass('h2', 'bar-header');
@@ -22,15 +20,15 @@ function createProjectElement(title, index){
     const newProject = createElementWithClass('button', 'project-button');
     newProject.textContent = title;
     newProject.setAttribute('index',index); 
-    newProject.addEventListener('click', (e) =>{
-        newProject.classList.add('selected');
-        if (selected != e.target && selected != undefined){
-            selected.classList.remove('selected');
+    newProject.addEventListener('click', () =>{
+        const prev = document.getElementsByClassName('selected')[0];
+        if (prev != undefined){
+            prev.classList.remove('selected');
         }
-        selected = newProject;
+        newProject.classList.add('selected');
     })
+    projectsList.append(newProject);
     newProject.click();
-    return newProject;
 }
 
 
@@ -48,16 +46,9 @@ newProjectButton.addEventListener('click', () => {
     if (newProjectTextField.value == ''){
         return;
     }
-    const newProject = createProjectElement(newProjectTextField.value, getProjects().length-1);
-    listProject(newProject);
+    addProjectDom(newProjectTextField.value);
     newProjectTextField.value = '';
-    addProject(newProjectTextField.value);
-
 })
-
-function selectProject(select){
-    selected = select;
-}
 
 bar.append(header);
 bar.append(projectsList);
@@ -67,6 +58,5 @@ export default bar;
 
 export {
     createProjectElement,
-    selectProject,
     listProject
 }
