@@ -46,16 +46,27 @@ main{
 
 
 
-.new-project{
+.new-project-div{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    margin-top: auto;
+}
+
+.new-project-button{
     border: none;
     border-top: 2px solid var(--zinc);
     padding: 5px;
     font-weight: 600;
     font-size: 15px;
-    margin-bottom: 5px;
-    margin-top: auto;
 }
 
-.new-project:active{
+.projects-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.new-project-button:active{
     background-color: var(--dark-slate);
 }

@@ -1,16 +1,51 @@
 import { createElementWithClass } from "./dom";
+import { addProject } from "./app";
+import { getProjects } from "./app";
 
 const projectsBar = createElementWithClass('div', 'projects-bar');
 const header = createElementWithClass('h2', 'bar-header');
 header.textContent = 'My Projects';
 const projectsList = createElementWithClass('ul', 'projects-list');
-const newProjectButton = createElementWithClass('button', 'new-project');
+
+const newProjectDiv = createElementWithClass('div', 'new-project-div');
+const newProjectTextField = createElementWithClass('input', 'new-project-textfield');
+newProjectTextField.setAttribute('type','textfield');
+newProjectTextField.setAttribute('placeholder','Name');
+const newProjectButton = createElementWithClass('button', 'new-project-button');
 newProjectButton.textContent = '+ New Project';
 newProjectButton.setAttribute('type', 'button');
+newProjectDiv.append(newProjectTextField);
+newProjectDiv.append(newProjectButton);
+
+function listProject(title, index){
+    const newProject = createElementWithClass('button', 'project-button');
+    newProject.textContent = title;
+    newProject.setAttribute('project-index',index);
+    projectsList.append(newProject);
+}
+
+
+
+newProjectTextField.addEventListener('keypress', (e)=>{
+    if (e.code == 'Enter'){
+        newProjectButton.click();
+    }
+})
+
+newProjectButton.addEventListener('click', () => {
+    if (newProjectTextField.value == ''){
+        return;
+    }
+    listProject(newProjectTextField.value, getProjects().length-1);
+    addProject(newProjectTextField.value);
+
+})
 
 projectsBar.append(header);
 projectsBar.append(projectsList);
-projectsBar.append(newProjectButton);
+projectsBar.append(newProjectDiv);
 
-
-export {projectsBar}
+export {
+    projectsBar,
+    listProject,
+}
