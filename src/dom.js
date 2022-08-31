@@ -1,6 +1,6 @@
 
 import { body } from ".";
-import { projectsBar, listProject } from "./bar";
+import { projectsBar, listProject, unlistProject } from "./bar";
 import { getProjects } from "./app";
 import './style.css';
 

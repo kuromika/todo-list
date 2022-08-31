@@ -1,6 +1,5 @@
 import { createElementWithClass } from "./dom";
-import { addProject } from "./app";
-import { getProjects } from "./app";
+import { addProject, getProjects, removeProject} from "./app";
 
 const projectsBar = createElementWithClass('div', 'projects-bar');
 const header = createElementWithClass('h2', 'bar-header');
@@ -20,11 +19,14 @@ newProjectDiv.append(newProjectButton);
 function listProject(title, index){
     const newProject = createElementWithClass('button', 'project-button');
     newProject.textContent = title;
-    newProject.setAttribute('project-index',index);
+    newProject.setAttribute('index',index); 
     projectsList.append(newProject);
 }
 
-
+function unlistProject(index){
+    projectsList.getElementsByClassName('project-button')[index].remove();
+    removeProject(index);
+}
 
 newProjectTextField.addEventListener('keypress', (e)=>{
     if (e.code == 'Enter'){
@@ -48,4 +50,5 @@ projectsBar.append(newProjectDiv);
 export {
     projectsBar,
     listProject,
+    unlistProject
 }
