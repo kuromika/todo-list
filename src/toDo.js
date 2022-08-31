@@ -10,7 +10,13 @@ const toDo = (title, description, dueDate, priority, status) => {
         getStatus: () => status,
 
         setDueDate: (newDate) => dueDate = newDate,
-        setStatus: () => status = !status,
+        setStatus: () => {
+            status = !status
+            return status;
+        },
+        setTitle : (newTitle) => title = newTitle,
+        setPriority: (newPriority) => priority = newPriority,
+
 
 
     }
