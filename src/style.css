@@ -109,11 +109,13 @@ main{
 .project-div{
     display: flex;
     flex-direction: column;
-    padding: 100px;
+    /* maybe center the project view? */
+    padding: 70px 90px 90px 70px;
     gap: 50px;
     background-color: var(--gray);
     margin-left: 3px;
     width: calc(80% - 3px);
+    overflow-y: auto;
 }
 
 .new-todo-button{
@@ -139,4 +141,50 @@ main{
     background-color: var(--dark-slate);
     border: 5px solid var(--stone);
     padding: 10px;
+    margin-bottom: 50px;
 }
+
+.todo-div{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    border: 1px solid var(--stone);
+    padding: 10px 20px;
+    width: max(445px, 30vw);
+}
+
+.completed-todo{
+    text-decoration: line-through;
+    border: 3px solid var(--stone);
+}
+
+.low-todo{
+    background-color: #d9f99d;
+}
+
+.medium-todo{
+    background-color: #fef3c7;
+}
+
+.high-todo{
+    background-color: #fca5a5;
+}
+
+.todo-checkbox{
+    border-radius: 40px;
+    height: 60px;
+    width: 30px;
+}
+
+.todo-textfield,
+.todo-date,
+.todo-select{
+    height: 25px;
+    width: 300px;
+    background-color: var(--gray);
+}
+
+.todo-date{
+    min-width: 20px;
+}
+

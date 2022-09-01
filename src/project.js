@@ -5,7 +5,7 @@ const project = (title, toDos) =>{
         type : 'Project',
 
         addToDo : function(){
-            const newToDo = toDo('','','','','');
+            const newToDo = toDo('','','','',false);
             toDos.push(newToDo);
             return newToDo;
         },

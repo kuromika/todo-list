@@ -30,6 +30,9 @@ function addProjectDom(title){
     const newProjectView = projectView(addProject(title));
     const lastProjectIndex = getProjects().length;
     createProjectElement(title, lastProjectIndex );
+    if (main.childElementCount > 1){
+        main.getElementsByClassName('project-div')[0].remove();
+    }
     main.append(newProjectView.getProjectDiv());
 }
 
