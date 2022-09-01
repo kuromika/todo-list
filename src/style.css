@@ -149,8 +149,8 @@ main{
     align-items: center;
     gap: 30px;
     border: 1px solid var(--stone);
-    padding: 10px 20px;
-    width: max(445px, 30vw);
+    padding: 5px 20px;
+    width: max(450px, 30vw);
 }
 
 .completed-todo{
@@ -173,7 +173,7 @@ main{
 .todo-checkbox{
     border-radius: 40px;
     height: 60px;
-    width: 30px;
+    min-width: 30px;
 }
 
 .todo-textfield,
