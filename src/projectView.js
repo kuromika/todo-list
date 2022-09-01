@@ -1,41 +1,25 @@
 import { createElementWithClass } from "./dom";
 import { creaetToDoView } from "./todoView";
 
-const projectView = createElementWithClass('div', 'project-view');
-const projectTitle = createElementWithClass('h2', 'project-title');
-const toDosDiv = createElementWithClass('div', 'todos-div');
+const projectView = (project) => {
+    const projectDiv = createElementWithClass('div', 'project-div');
+    const projectTitle = createElementWithClass('h2', 'project-title');
+    const addToDoButton = createElementWithClass('button', 'new-todo-button');
+    addToDoButton.setAttribute('type','input');
+    addToDoButton.textContent = "+";
+    addToDoButton.addEventListener('click', () =>{
+        const newToDo = project.addToDo();
+        projectDiv.append(creaetToDoView(newToDo, project.getToDos().length));
 
-const newToDoButton = createElementWithClass('button', 'new-todo-button');
-newToDoButton.setAttribute('type','button');
-newToDoButton.textContent = "+";
-newToDoButton.addEventListener('click', () => {
-    const newTodoView = creaetToDoView();
-    toDosDiv.append(newTodoView);
-});
-
-
-//create the todo element in the project and add the listeners directly into it
-//use factories for the todos viewer and the project viewer?
-//probably create one more module to link the projectview with the todos instead of mixing them.
-//recap losely coupled modules.
-
-
-projectView.append(projectTitle);
-projectView.append(toDosDiv);
-projectView.append(newToDoButton);
-
-function setTitle(project){
+    })
     projectTitle.textContent = project.getTitle();
+    projectDiv.append(projectTitle);
+    projectDiv.append(addToDoButton);
+
+
+    const getProjectDiv = () => projectDiv;
+
+    return {getProjectDiv}
 }
-
-function loadToDos(project){ //complete later when doing persistence
-
-    for(let todo in project.getTodos()){
-
-    }
-
-}
-
 
 export default projectView;
-export {setTitle};

@@ -5,12 +5,15 @@ function creaetToDoView(todo, index){
     const todoDiv = createElementWithClass('div', 'todo-div');
     todoDiv.setAttribute('toddo-index', index);
     const checkbox = createElementWithClass('input', 'todo-checkbox');
+    checkbox.setAttribute('type','checkbox');
     const textfield = createElementWithClass('input','todo-textfield');
+    textfield.setAttribute('type','textfield')
     const date = createElementWithClass('input','todo-date');
+    date.setAttribute('type', 'date');
     const dateObject = new Date();
     const dateAsString = `${dateObject.getFullYear()}-${dateObject.getMonth()}-${dateObject.getDate()}`;
-    date.value(dateAsString);
-    todo.setDate(dateAsString);
+    date.value = dateAsString;
+    todo.setDueDate(dateAsString);
     const select = createSelectPriority(todo);
  
     checkbox.addEventListener('change', () => {

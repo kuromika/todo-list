@@ -106,12 +106,11 @@ main{
     background-color: var(--dark-slate);
 }
 
-.project-view{
+.project-div{
     display: flex;
     flex-direction: column;
     padding: 100px;
-    gap: 20px;
-    justify-content: space-between;
+    gap: 50px;
     background-color: var(--gray);
     margin-left: 3px;
     width: calc(80% - 3px);
@@ -120,6 +119,7 @@ main{
 .new-todo-button{
     align-self: flex-end;
     justify-self: flex-end;
+    order: 2;
     background-color: #64748b;
     color: #fafafa;
     font-size: 40px;
@@ -131,4 +131,12 @@ main{
 
 .new-todo-button:active{
     background-color: #0f172a;
+}
+
+.project-title{
+    color:var(--slate);
+    font-size: 40px;
+    background-color: var(--dark-slate);
+    border: 5px solid var(--stone);
+    padding: 10px;
 }

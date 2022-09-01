@@ -2,16 +2,16 @@
 import { body } from ".";
 
 import bar from "./bar";
-import { listProject, selectProject, createProjectElement} from "./bar";
+import {createProjectElement} from "./bar";
 
 import projectView from "./projectView";
-import { setTitle as  setViewTitle } from "./projectView";
 
 import { getProjects, addProject} from "./app";
 
 
 import './style.css';
 
+const projectViews = [];
 const main = document.createElement('main');
 
 function createElementWithClass(tag, elementClass){
@@ -21,18 +21,17 @@ function createElementWithClass(tag, elementClass){
 }
 
 function build(){
-    addProjectDom('Default');
-    setViewTitle(getProjects()[0]);
     main.append(bar);
-    main.append(projectView);
     body.append(main);
+    addProjectDom('Default');
 }
 
 function addProjectDom(title){
-    createProjectElement(title, getProjects().length-1);
-    addProject(title);
+    const newProjectView = projectView(addProject(title));
+    const lastProjectIndex = getProjects().length;
+    createProjectElement(title, lastProjectIndex );
+    main.append(newProjectView.getProjectDiv());
 }
-
 
 
 export {createElementWithClass, build, addProjectDom}

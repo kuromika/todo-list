@@ -1,9 +1,13 @@
+import toDo from "./toDo";
+
 const project = (title, toDos) =>{
     const proto = {
         type : 'Project',
 
-        addToDo : function(toDo){
-            toDos.push(toDo);
+        addToDo : function(){
+            const newToDo = toDo('','','','','');
+            toDos.push(newToDo);
+            return newToDo;
         },
 
         removeToDo : function(index){
