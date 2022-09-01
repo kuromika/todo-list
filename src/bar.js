@@ -1,3 +1,4 @@
+import { addProject } from "./app";
 import { createElementWithClass, addProjectDom} from "./dom";
 
 
@@ -48,7 +49,7 @@ newProjectButton.addEventListener('click', () => {
     if (newProjectTextField.value == ''){
         return;
     }
-    addProjectDom(newProjectTextField.value);
+    addProjectDom(addProject(newProjectTextField.value));
     newProjectTextField.value = '';
 })
 

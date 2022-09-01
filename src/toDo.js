@@ -14,7 +14,10 @@ const toDo = (title, description, dueDate, priority, status) => {
             status = !status
             return status;
         },
-        setTitle : (newTitle) => title = newTitle,
+        setTitle : (newTitle) => {
+            console.log(title);
+            console.log(newTitle);
+        },
         setPriority: (newPriority) => priority = newPriority,
 
 

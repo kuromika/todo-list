@@ -1,7 +1,7 @@
 import project from "./project";
 import toDo from "./toDo";
 
-let projects = [];
+const projects = [];
 
 
 function addProject(title){
@@ -27,7 +27,9 @@ function loadProjects(){
     const JSONprojects = localStorage.getItem('projects');
     if (JSONprojects){
         const oldProjects = JSON.parse(JSONprojects);
-        projects = oldProjects;
+        for (let i = 0; i < oldProjects.length; i++){
+            projects.push(project(oldProjects[i].title, oldProjects[i].toDos))
+        }
     }
 }
 

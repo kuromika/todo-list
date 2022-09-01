@@ -1,19 +1,19 @@
 import { createElementWithClass } from "./dom";
-import {format} from 'date-fns';
-
 
 function creaetToDoView(todo, index) {
     const todoDiv = createElementWithClass('div', 'todo-div');
     todoDiv.setAttribute('toddo-index', index);
     const checkbox = createElementWithClass('input', 'todo-checkbox');
     checkbox.setAttribute('type','checkbox');
+    if (todo.getStatus()){
+        checkbox.checked = true;
+    }
     const textfield = createElementWithClass('input','todo-textfield');
-    textfield.setAttribute('type','textfield')
+    textfield.setAttribute('type','textfield');
+    textfield.value = todo.getTitle();
     const date = createElementWithClass('input','todo-date');
     date.setAttribute('type', 'date');
-    const dateObject = new Date();
-    date.valueAsDate = dateObject;
-    todo.setDueDate(format(dateObject, 'yyyy-MM-dd'));
+    date.value = todo.getDueDate();
     const select = createSelectPriority(todo,todoDiv);
  
     checkbox.addEventListener('change', () => {
@@ -31,7 +31,6 @@ function creaetToDoView(todo, index) {
 
     date.addEventListener('change', () => {
         todo.setDueDate(date.value);
-        console.log(todo.getDueDate());
     });
 
    
@@ -46,10 +45,11 @@ function creaetToDoView(todo, index) {
 
 function createSelectPriority(todo, todoDiv){
     const select = createElementWithClass('select','todo-select');
-    select.append(createOptionElement('-- select priority --', ''));
+    select.append(createOptionElement('select priority', 'select priority'));
     select.append(createOptionElement('Low', 'low'));
     select.append(createOptionElement('Medium', 'medium'));
     select.append(createOptionElement('High', 'high'));
+    select.value = todo.getPriority();
 
     select.addEventListener('change', ()=>{
         // could be improved

@@ -5,7 +5,7 @@ const project = (title, toDos) =>{
         type : 'Project',
 
         addToDo : function(){
-            const newToDo = toDo('','','','',false);
+            const newToDo = toDo('','','','',false); //override
             toDos.push(newToDo);
             return newToDo;
         },
