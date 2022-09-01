@@ -1,7 +1,8 @@
 import { createElementWithClass } from "./dom";
+import {format} from 'date-fns';
 
 
-function creaetToDoView(todo, index){
+function creaetToDoView(todo, index) {
     const todoDiv = createElementWithClass('div', 'todo-div');
     todoDiv.setAttribute('toddo-index', index);
     const checkbox = createElementWithClass('input', 'todo-checkbox');
@@ -11,9 +12,8 @@ function creaetToDoView(todo, index){
     const date = createElementWithClass('input','todo-date');
     date.setAttribute('type', 'date');
     const dateObject = new Date();
-    const dateAsString = `${dateObject.getFullYear()}-${dateObject.getMonth()}-${dateObject.getDate()}`;
-    date.value = dateAsString;
-    todo.setDueDate(dateAsString);
+    date.valueAsDate = dateObject;
+    todo.setDueDate(format(dateObject, 'yyyy-MM-dd'));
     const select = createSelectPriority(todo,todoDiv);
  
     checkbox.addEventListener('change', () => {
@@ -31,6 +31,7 @@ function creaetToDoView(todo, index){
 
     date.addEventListener('change', () => {
         todo.setDueDate(date.value);
+        console.log(todo.getDueDate());
     });
 
    
@@ -58,7 +59,6 @@ function createSelectPriority(todo, todoDiv){
         }
         todo.setPriority(select.value);
         const newClass = `${todo.getPriority()}-todo`;
-        console.log(todo.getPriority());
         todoDiv.classList.add(newClass);
     });
 

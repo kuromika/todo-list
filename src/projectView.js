@@ -9,7 +9,16 @@ const projectView = (project) => {
     addToDoButton.textContent = "+";
     addToDoButton.addEventListener('click', () =>{
         const newToDo = project.addToDo();
-        projectDiv.append(creaetToDoView(newToDo, project.getToDos().length));
+        const toDoView = creaetToDoView(newToDo, project.getToDos().length);
+        const removeButton = createElementWithClass('button','remove-todo-button');
+        removeButton.setAttribute('type','button');
+        removeButton.textContent = '-';
+        removeButton.addEventListener('click', () => {
+            project.removeToDo(project.getToDos().length);
+            toDoView.remove();
+        });
+        toDoView.append(removeButton);
+        projectDiv.append(toDoView)
 
     })
     projectTitle.textContent = project.getTitle();

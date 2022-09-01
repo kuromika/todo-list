@@ -14,6 +14,11 @@ import './style.css';
 const projectViews = [];
 const main = document.createElement('main');
 
+// FOR PERSISTENCE, save all project names, then all todos with an additional
+//value (their project name), then add all projects, and all todos into
+//their respective project, finally call the corresponding functions
+//to populate the dom again.
+
 function createElementWithClass(tag, elementClass){
     const newElement = document.createElement(tag);
     newElement.classList.add(elementClass);

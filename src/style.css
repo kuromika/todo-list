@@ -150,7 +150,7 @@ main{
     gap: 30px;
     border: 1px solid var(--stone);
     padding: 5px 20px;
-    width: max(450px, 30vw);
+    width: max(480px, 35vw);
 }
 
 .completed-todo{
@@ -186,5 +186,14 @@ main{
 
 .todo-date{
     min-width: 20px;
+}
+
+.remove-todo-button{
+    background-color: #b91c1c;
+    height: 30px;
+    width: 50px;
+    font-size: 20px;
+    color: white;
+    border: 2px solid black;
 }
 
