@@ -22,7 +22,6 @@ function creaetToDoView(todo, index){
         date.disabled = status;
         textfield.disabled = status;
         select.disabled = status;
-
         todoDiv.classList.toggle('completed-todo');
     });
 

@@ -25,10 +25,12 @@ function createProjectElement(title, index){
         if (prev != undefined){
             prev.classList.remove('selected');
         }
+
         newProject.classList.add('selected');
     })
     projectsList.append(newProject);
     newProject.click();
+    return newProject;
 }
 
 

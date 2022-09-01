@@ -28,12 +28,16 @@ function build(){
 
 function addProjectDom(title){
     const newProjectView = projectView(addProject(title));
+    projectViews.push(newProjectView);
     const lastProjectIndex = getProjects().length;
-    createProjectElement(title, lastProjectIndex );
-    if (main.childElementCount > 1){
-        main.getElementsByClassName('project-div')[0].remove();
-    }
-    main.append(newProjectView.getProjectDiv());
+    const projectButton = createProjectElement(title, lastProjectIndex );
+    projectButton.addEventListener('click', () => {
+        if (main.childElementCount > 1){
+            main.getElementsByClassName('project-div')[0].remove();
+        }
+        main.append(newProjectView.getProjectDiv());
+    });
+    projectButton.click();
 }
 
 
