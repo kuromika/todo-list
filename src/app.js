@@ -1,7 +1,7 @@
 import project from "./project";
 import toDo from "./toDo";
 
-const projects = [];
+let projects = [];
 
 
 function addProject(title){
@@ -19,8 +19,22 @@ function getProjects(){
     return projects;
 }
 
+function saveProjects(){
+    localStorage.setItem('projects', JSON.stringify(projects));
+}
+
+function loadProjects(){
+    const JSONprojects = localStorage.getItem('projects');
+    if (JSONprojects){
+        const oldProjects = JSON.parse(JSONprojects);
+        projects = oldProjects;
+    }
+}
+
 export {
     addProject,
     removeProject,
-    getProjects
+    getProjects,
+    saveProjects,
+    loadProjects
 };

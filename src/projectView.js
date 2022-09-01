@@ -1,3 +1,4 @@
+import { saveProjects } from "./app";
 import { createElementWithClass } from "./dom";
 import { creaetToDoView } from "./todoView";
 
@@ -16,10 +17,11 @@ const projectView = (project) => {
         removeButton.addEventListener('click', () => {
             project.removeToDo(project.getToDos().length);
             toDoView.remove();
+            saveProjects();
         });
         toDoView.append(removeButton);
-        projectDiv.append(toDoView)
-
+        projectDiv.append(toDoView);
+        saveProjects();
     })
     projectTitle.textContent = project.getTitle();
     projectDiv.append(projectTitle);

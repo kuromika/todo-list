@@ -6,7 +6,7 @@ import {createProjectElement} from "./bar";
 
 import projectView from "./projectView";
 
-import { getProjects, addProject} from "./app";
+import { getProjects, addProject, saveProjects, loadProjects} from "./app";
 
 
 import './style.css';
@@ -18,6 +18,7 @@ const main = document.createElement('main');
 //value (their project name), then add all projects, and all todos into
 //their respective project, finally call the corresponding functions
 //to populate the dom again.
+// addtodo, removetodo, addproject -> saveprojects
 
 function createElementWithClass(tag, elementClass){
     const newElement = document.createElement(tag);
@@ -26,6 +27,7 @@ function createElementWithClass(tag, elementClass){
 }
 
 function build(){
+    loadProjects();
     main.append(bar);
     body.append(main);
     addProjectDom('Default');
@@ -43,6 +45,7 @@ function addProjectDom(title){
         main.append(newProjectView.getProjectDiv());
     });
     projectButton.click();
+    saveProjects();
 }
 
 
